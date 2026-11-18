@@ -1,0 +1,168 @@
+{
+  "generated_at": "2026-11-18 11:08:55",
+  "machine": {
+    "platform": "Windows-11-10.0.26300-SP0",
+    "processor": "AMD64 Family 25 Model 68 Stepping 1, AuthenticAMD",
+    "logical_cpus": 12,
+    "ram_total_gb": 16.5,
+    "ram_available_gb_at_start": 4.2,
+    "python": "3.12.10"
+  },
+  "A_stage_runtime_memory": {
+    "baseline_process_peak_mb_after_imports": 107.9,
+    "00000026": {
+      "n_points": 361,
+      "n_arcs": 5043,
+      "candidate_rows": 4065,
+      "median_timings_s_with_labels": {
+        "load_s": 0.035,
+        "graph_s": 0.002,
+        "candidates_s": 0.005,
+        "features_s": 0.025,
+        "labels_s": 0.009,
+        "total_s": 0.09
+      },
+      "median_total_s_inference_only": 0.077,
+      "peak_mb_with_labels": 119.3,
+      "peak_mb_inference_only": 119.1
+    },
+    "00000001": {
+      "n_points": 1315,
+      "n_arcs": 165790,
+      "candidate_rows": 15991,
+      "median_timings_s_with_labels": {
+        "load_s": 1.355,
+        "graph_s": 0.08,
+        "candidates_s": 0.167,
+        "features_s": 0.091,
+        "labels_s": 0.11,
+        "total_s": 1.867
+      },
+      "median_total_s_inference_only": 1.707,
+      "peak_mb_with_labels": 268.4,
+      "peak_mb_inference_only": 269.3
+    },
+    "00000013": {
+      "n_points": 2580,
+      "n_arcs": 307392,
+      "candidate_rows": 24575,
+      "median_timings_s_with_labels": {
+        "load_s": 2.291,
+        "graph_s": 0.139,
+        "candidates_s": 0.293,
+        "features_s": 0.128,
+        "labels_s": 0.276,
+        "total_s": 3.185
+      },
+      "median_total_s_inference_only": 2.839,
+      "peak_mb_with_labels": 392.1,
+      "peak_mb_inference_only": 392.2
+    },
+    "00000054": {
+      "n_points": 19313,
+      "n_arcs": 116916,
+      "candidate_rows": 48023,
+      "median_timings_s_with_labels": {
+        "load_s": 1.596,
+        "graph_s": 0.051,
+        "candidates_s": 0.154,
+        "features_s": 0.205,
+        "labels_s": 1.01,
+        "total_s": 3.077
+      },
+      "median_total_s_inference_only": 2.047,
+      "peak_mb_with_labels": 228.5,
+      "peak_mb_inference_only": 228.8
+    },
+    "00000092": {
+      "n_points": 7892,
+      "n_arcs": 53348,
+      "candidate_rows": 85962,
+      "median_timings_s_with_labels": {
+        "load_s": 0.67,
+        "graph_s": 0.019,
+        "candidates_s": 0.132,
+        "features_s": 0.381,
+        "labels_s": 2.297,
+        "total_s": 3.58
+      },
+      "median_total_s_inference_only": 1.227,
+      "peak_mb_with_labels": 243.3,
+      "peak_mb_inference_only": 232.7
+    }
+  },
+  "B_candidate_generator": {
+    "00000001": {
+      "n_points": 1315,
+      "n_arcs": 165790,
+      "r30": {
+        "pairs_true": 8104,
+        "ours_s": 0.172,
+        "brute_force_s": 13.773,
+        "speedup_vs_brute_force": 80.0,
+        "ours_missing": 0,
+        "ours_extra": 0,
+        "midpoint_kdtree_s": 0.014,
+        "midpoint_kdtree_recall": 0.4769
+      },
+      "r50": {
+        "pairs_true": 15991,
+        "ours_s": 0.155,
+        "brute_force_s": 13.77,
+        "speedup_vs_brute_force": 88.7,
+        "ours_missing": 0,
+        "ours_extra": 0,
+        "midpoint_kdtree_s": 0.012,
+        "midpoint_kdtree_recall": 0.6145
+      }
+    },
+    "00000013": {
+      "n_points": 2580,
+      "n_arcs": 307392,
+      "r30": {
+        "pairs_true": 13316,
+        "ours_s": 0.272,
+        "brute_force_s": 48.965,
+        "speedup_vs_brute_force": 179.8,
+        "ours_missing": 0,
+        "ours_extra": 0,
+        "midpoint_kdtree_s": 0.012,
+        "midpoint_kdtree_recall": 0.4782
+      },
+      "r50": {
+        "pairs_true": 24575,
+        "ours_s": 0.287,
+        "brute_force_s": 51.065,
+        "speedup_vs_brute_force": 177.7,
+        "ours_missing": 0,
+        "ours_extra": 0,
+        "midpoint_kdtree_s": 0.024,
+        "midpoint_kdtree_recall": 0.6344
+      }
+    }
+  },
+  "C_projection_accuracy": {
+    "n_pairs": 40000,
+    "rel_err_median": 5.9801826644778256e-05,
+    "rel_err_p99": 0.002770312133250961,
+    "rel_err_max": 0.00459634883773228,
+    "abs_err_m_p99": 0.08339425392792356,
+    "abs_err_m_max": 0.2103905774095054
+  },
+  "D_dataset_load": {
+    "all_columns": {
+      "rows": 1869503,
+      "cols": 50,
+      "load_s": 1.33,
+      "df_mb": 370.2,
+      "peak_mb": 773.2
+    },
+    "features_plus_label": {
+      "rows": 1869503,
+      "cols": 45,
+      "load_s": 1.37,
+      "df_mb": 336.5,
+      "peak_mb": 797.9
+    }
+  }
+}

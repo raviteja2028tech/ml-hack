@@ -1,0 +1,99 @@
+# ============================================================
+# PathSnap — GPS Map Matching & Route Reconstruction
+# ============================================================
+
+# 1. Python environments
+.venv/
+venv/
+env/
+ENV/
+.python-version
+
+# 2. Python bytecode and build artifacts
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+build/
+dist/
+.eggs/
+
+# 3. Testing and development caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+
+# 4. Environment variables and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials.json
+secrets.json
+
+# 5. Frontend dependencies and build files
+node_modules/
+.vite/
+.next/
+coverage/
+
+# 6. Downloaded Python packages
+wheelhouse/
+*.whl
+pip-wheel-metadata/
+
+# 7. Raw organizer datasets (keep locally)
+data/raw/
+Student folder/
+Student_folder.zip
+Student folder.zip
+PathSnap_student_materials.zip
+
+# 8. Generated dataset caches
+data/processed/
+*.parquet
+*.npz
+*.npy
+*.pkl
+
+# 9. Temporary files
+*.tmp
+*.bak
+*.swp
+*~
+*.log
+
+# 10. Operating system files
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# 11. Ollama / unrelated local AI experiments
+.ollama/
+Modelfile
+ollama_models/
+ollama_cache/
+
+# ============================================================
+# IMPORTANT: Intentionally NOT ignored
+# ============================================================
+# src/                 → ML source code
+# scripts/             → Reproducibility scripts
+# tests/               → Automated tests
+# models/              → Trained ML model checkpoints
+# artifacts/           → HMM parameters and model artifacts
+# outputs/figures/     → Folium visualizations
+# outputs/reports/     → Evaluation results
+# docs/                → Documentation
+# api/                 → FastAPI backend
+# ui/                  → Frontend
+# requirements.txt     → Python dependencies
+# README.md            → Project documentation

@@ -99,3 +99,5 @@ ollama_cache/
 # README.md            → Project documentation
 
 scripts/execute_reorganization.py
+
+scripts/execute_reorganization.py

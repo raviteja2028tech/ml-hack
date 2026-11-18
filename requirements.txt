@@ -13,3 +13,4 @@ matplotlib==3.11.2
 optuna==5.1.0
 fastapi==0.163.2
 uvicorn==0.54.0
+httpx==0.28.1  # FastAPI TestClient (tests)

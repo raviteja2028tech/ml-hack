@@ -1,65 +1,74 @@
-# PathSnap — GPS Map-Matching & Route Reconstruction
+# PathSnap: GPS Map Matching & Route Reconstruction
 
-Matches noisy GPS tracks to the trip's road network. Each GPS point gets candidate road arcs, and a classifier scores them. A planned HMM/Viterbi decoder will turn those scores into a connected route.
+PathSnap snaps noisy GPS tracks onto the trip's road network. For every GPS point it:
+1. generates candidate road arcs within 50 m;
+2. scores each candidate with a LightGBM classifier (42 features);
+3. decodes the most plausible connected road sequence with an HMM + Viterbi.
 
-## Status
-| Phase | Component | State |
-|---|---|---|
-| 2 | Dataset loading, projection, audit, Folium EDA maps | done |
-| 3 | Candidate generation, feature engineering, route labelling | done (`docs/PHASE3_REPORT.md`) |
-| 4 | 5-model training and evaluation | done. Best is LightGBM: CV Top-1 0.8885, student-test Top-1 0.8952 |
-| 5 | Optuna Bayesian tuning | not started |
-| 6 | HMM + Viterbi decoding | not started |
-| 7–8 | FastAPI backend, evaluator UI | not started |
+A FastAPI backend serves predictions to a Leaflet dashboard, which can run on a second laptop.
 
-## Layout
+## Results (10 student-test trips, 19,133 labelled GPS points)
+| Method | Top-1 point accuracy | Continuity (≤3 arcs) | Route arc precision | Route length F1 |
+|---|---|---|---|---|
+| Nearest road (heuristic) | 53.64% | – | – | – |
+| Distance + heading (heuristic) | 85.75% | – | – | – |
+| LightGBM only (per-point argmax) | 89.52% | 98.53% | 91.01% | 94.76% |
+| **LightGBM + HMM/Viterbi** | **94.15%** | **99.92%** | **97.56%** | **98.44%** |
+
+- The HMM improves Top-1 on all 10 trips; full numbers are in `results/metrics/hmm_evaluation.json`.
+- The HMM settings were fixed before evaluation, not tuned on these trips.
+- The model was chosen among 5 classifiers by grouped 5-fold CV on the 80 training trips (`results/metrics/model_comparison.json`).
+
+## Project layout
 ```
-PathSnap/
-├── README.md
-├── requirements.txt
-├── .gitignore
-├── data/
-│   ├── raw/
-│   │   └── Student folder/          # 80 train + 10 student_test trips
-│   └── processed/
-│       ├── train_candidates.parquet
-│       └── student_test_candidates.parquet
-├── src/
-│   ├── phase1_eda/                  # Data loading, projections, Folium visualizations
-│   ├── phase2_preprocessing/        # Spatial indexing & coordinate conversions
-│   ├── phase3_features/             # Candidate generation, 42 features, route labeling
-│   ├── phase4_models/               # 5-model training, evaluation & metrics
-│   ├── phase5_hmm/                  # HMM & Viterbi sequential decoder
-│   └── phase6_pipeline/             # Unified end-to-end inference pipeline
-├── api/                             # FastAPI service (Laptop 1 server)
-├── ui/                              # Evaluator interface (Laptop 2 client)
-├── artifacts/
-│   └── models/                      # Trained .joblib models (LR, RF, ET, LGBM, MLP)
-├── results/
-│   ├── figures/                     # Confusion matrices & evaluation plots
-│   ├── metrics/                     # Model comparison JSONs & benchmarks
-│   └── maps/                        # Interactive Folium maps (REVIEW1_MAP.html)
-├── tests/                           # Unit tests (45 tests covering all phases)
-├── docs/                            # Official guidelines & hackathon requirements
-└── reports/                         # Technical reports, EDA summaries & build logs
+src/
+  phase1_eda/            data loading, metric projection, Folium maps, dataset audit
+  phase2_preprocessing/  geodesic helpers
+  phase3_features/       candidate generation, 42 features, route labelling, dataset builder
+  phase4_models/         5-model training/evaluation, Optuna Bayesian optimisation
+  phase5_hmm/            transition model, Viterbi decoder, ML-only vs HMM evaluation
+  phase6_pipeline/       end-to-end inference for one trip (CLI)
+  phase7_api/            FastAPI backend (/health /trips /predict /metrics)
+  phase8_ui/             dashboard (HTML + Leaflet, no build step)
+api/main.py              backward-compatible ASGI entry point (imports src.phase7_api.app)
+artifacts/models/        trained models (LightGBM is deployed)
+results/metrics/         model comparison, HMM evaluation, Optuna results
+results/maps/            Folium maps
+tests/                   68 unittest tests
+docs/                    architecture, demo guide, requirements, guidelines
+reports/                 technical report draft, Phase 3 report, logs
 ```
 
-## Setup
+## Setup (Windows PowerShell)
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 ```
 Extract the official `Student folder.zip` into `data/raw/`, so that `data/raw/Student folder/train/` and `data/raw/Student folder/student_test/` exist. Raw and processed data are not tracked in Git.
 
-## Testing
+## Run the demo
+**Laptop 1, backend:**
 ```powershell
-.\.venv\Scripts\python.exe -m unittest tests.test_structure tests.test_phase3 tests.test_phase4
+.\.venv\Scripts\python.exe -m uvicorn api.main:app --host 0.0.0.0 --port 8000
+```
+To use it on one laptop, open **http://localhost:8000/ui/**.
+
+**Laptop 2, frontend:** see `docs/DEMO_GUIDE.md`. Either open `http://<LAPTOP1_IP>:8000/ui/` directly, or serve the UI locally:
+```powershell
+python -m http.server 5500 --directory src\phase8_ui
+# then open http://localhost:5500/?api=http://<LAPTOP1_IP>:8000
 ```
 
-## Run
+## Command line
 ```powershell
-.\.venv\Scripts\python.exe scripts\run_audit.py
-.\.venv\Scripts\python.exe scripts\generate_eda_maps.py
-.\.venv\Scripts\python.exe scripts\build_phase3_dataset.py       # regenerates data/processed/phase3
-.\.venv\Scripts\python.exe -m src.phase4_models.train_models     # all 5 models (about 14 min)
+.\.venv\Scripts\python.exe -m src.phase6_pipeline.end_to_end_matcher 00000052        # one trip, prints metrics
+.\.venv\Scripts\python.exe -m src.phase5_hmm.evaluate_hmm                           # all 10 student-test trips
+.\.venv\Scripts\python.exe -m src.phase4_models.bayesian_optimization --trials 12   # Optuna (train trips only)
+.\.venv\Scripts\python.exe scripts\build_phase3_dataset.py                          # regenerate data/processed/phase3
+.\.venv\Scripts\python.exe -m src.phase4_models.train_models                        # retrain the 5 models (~14 min)
+```
+
+## Tests
+```powershell
+.\.venv\Scripts\python.exe -m unittest tests.test_structure tests.test_phase3 tests.test_phase4 tests.test_phase5_hmm tests.test_phase6_7_pipeline_api
 ```

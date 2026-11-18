@@ -1,25 +1,7 @@
 """
-FastAPI Backend Service for PathSnap (Laptop 1 Inference Server).
+Backward-compatible entry point for the PathSnap FastAPI backend (implementation: src/phase7_api/app.py).
+
+    .venv\\Scripts\\python.exe -m uvicorn api.main:app --host 0.0.0.0 --port 8000
 """
 
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-from pathlib import Path
-
-app = FastAPI(
-    title="PathSnap Map-Matching API",
-    version="1.0.0",
-    description="Distributed Map-Matching and Route Reconstruction Engine"
-)
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-@app.get("/health")
-def health_check():
-    return {"status": "ok", "service": "PathSnap API", "version": "1.0.0"}
+from src.phase7_api.app import app  # noqa: F401

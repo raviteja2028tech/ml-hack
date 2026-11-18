@@ -97,3 +97,5 @@ ollama_cache/
 # ui/                  → Frontend
 # requirements.txt     → Python dependencies
 # README.md            → Project documentation
+
+scripts/execute_reorganization.py

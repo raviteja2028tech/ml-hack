@@ -30,9 +30,19 @@
 
   // ---------- map ----------
   const map = L.map("map", { preferCanvas: true, zoomControl: true }).setView([0, 0], 2);
-  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  const esriCanvas = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}", {
+    maxZoom: 19, attribution: "Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ",
+  });
+  const osmLayer = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 19, attribution: "&copy; OpenStreetMap contributors",
-  }).addTo(map);
+  });
+  esriCanvas.addTo(map);
+
+  const baseLayers = {
+    "Esri Canvas (Clean)": esriCanvas,
+    "OpenStreetMap": osmLayer,
+  };
+
   const layers = {  // draw order: GPS underneath, predictions on top
     gps: L.layerGroup().addTo(map),
     ref: L.layerGroup().addTo(map),
@@ -40,7 +50,7 @@
     hmm: L.layerGroup().addTo(map),
     chg: L.layerGroup().addTo(map),
   };
-  L.control.layers(null, {
+  L.control.layers(baseLayers, {
     "Ground truth (reference route)": layers.ref,
     "ML-only prediction": layers.ml,
     "HMM / Viterbi prediction": layers.hmm,

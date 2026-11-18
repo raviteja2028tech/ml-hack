@@ -1,0 +1,257 @@
+{
+  "model": "lightgbm",
+  "family": "Gradient boosting (histogram)",
+  "config": {
+    "boosting_type": "gbdt",
+    "class_weight": null,
+    "colsample_bytree": 0.8,
+    "importance_type": "split",
+    "learning_rate": 0.05,
+    "max_depth": -1,
+    "min_child_samples": 100,
+    "min_child_weight": 0.001,
+    "min_split_gain": 0.0,
+    "n_estimators": 500,
+    "n_jobs": 6,
+    "num_leaves": 63,
+    "objective": null,
+    "random_state": 42,
+    "reg_alpha": 0.0,
+    "reg_lambda": 1.0,
+    "subsample": 0.8,
+    "subsample_for_bin": 200000,
+    "subsample_freq": 1,
+    "verbose": -1
+  },
+  "preprocessing": "none (trees)",
+  "cv": {
+    "scheme": "GroupKFold(5) by trip, trip-balanced cap=1000 pts/trip",
+    "summary": {
+      "top1_accuracy": {
+        "mean": 0.8884980245856458,
+        "std": 0.013522658697865328
+      },
+      "accuracy_rows": {
+        "mean": 0.9814988490766184,
+        "std": 0.0011795452597498294
+      },
+      "precision": {
+        "mean": 0.9116187302682931,
+        "std": 0.0056618604520172365
+      },
+      "recall": {
+        "mean": 0.8612457285860634,
+        "std": 0.018439075282324996
+      },
+      "f1": {
+        "mean": 0.8856297761386621,
+        "std": 0.011101014014563234
+      },
+      "f1_macro": {
+        "mean": 0.9377800704622604,
+        "std": 0.005743202524337574
+      },
+      "log_loss": {
+        "mean": 0.05017375564492654,
+        "std": 0.004356200895608344
+      },
+      "roc_auc": {
+        "mean": 0.993525381956227,
+        "std": 0.0016287765249497197
+      },
+      "pred_continuity_direct": {
+        "mean": 0.9462418171682302,
+        "std": 0.008778831002543728
+      },
+      "pred_continuity_reach3": {
+        "mean": 0.977622259571076,
+        "std": 0.002639731384179887
+      },
+      "fit_s": {
+        "mean": 14.987077879999925,
+        "std": 2.6457764685534753
+      },
+      "predict_s": {
+        "mean": 1.5264084000000366,
+        "std": 0.2928894901840318
+      }
+    },
+    "folds": [
+      {
+        "rows": 173374,
+        "points": 14052,
+        "top1_accuracy": 0.8693424423569599,
+        "accuracy_rows": 0.9795701777659857,
+        "precision": 0.9018198501299893,
+        "recall": 0.8393111300882437,
+        "f1": 0.8694434205676373,
+        "f1_macro": 0.9291807207275359,
+        "log_loss": 0.05689896393141719,
+        "roc_auc": 0.9918646962525621,
+        "confusion_matrix": [
+          [
+            158038,
+            1284
+          ],
+          [
+            2258,
+            11794
+          ]
+        ],
+        "pred_pairs": 7586,
+        "pred_continuity_direct": 0.9442393883469549,
+        "pred_continuity_reach3": 0.9760084365937253,
+        "fit_s": 13.784933300000375,
+        "predict_s": 1.3248078999995414,
+        "val_trips": 15
+      },
+      {
+        "rows": 173232,
+        "points": 15599,
+        "top1_accuracy": 0.894544522084749,
+        "accuracy_rows": 0.9807194975524153,
+        "precision": 0.9131225989081351,
+        "recall": 0.868517212641836,
+        "f1": 0.890261532395847,
+        "f1_macro": 0.9398464243041673,
+        "log_loss": 0.053743412412985296,
+        "roc_auc": 0.991362082348665,
+        "confusion_matrix": [
+          [
+            156344,
+            1289
+          ],
+          [
+            2051,
+            13548
+          ]
+        ],
+        "pred_pairs": 8107,
+        "pred_continuity_direct": 0.9468360675959048,
+        "pred_continuity_reach3": 0.9740964598495128,
+        "fit_s": 12.399292899999637,
+        "predict_s": 1.3341835000001083,
+        "val_trips": 16
+      },
+      {
+        "rows": 175360,
+        "points": 15071,
+        "top1_accuracy": 0.9023289761794174,
+        "accuracy_rows": 0.9827497718978102,
+        "precision": 0.9182058047493403,
+        "recall": 0.8774467520403424,
+        "f1": 0.8973636887999186,
+        "f1_macro": 0.9439736292259655,
+        "log_loss": 0.04587305792938302,
+        "roc_auc": 0.9954325263412773,
+        "confusion_matrix": [
+          [
+            159111,
+            1178
+          ],
+          [
+            1847,
+            13224
+          ]
+        ],
+        "pred_pairs": 9105,
+        "pred_continuity_direct": 0.9562877539813289,
+        "pred_continuity_reach3": 0.9816584294343768,
+        "fit_s": 19.186732400000437,
+        "predict_s": 2.0869785000004413,
+        "val_trips": 17
+      },
+      {
+        "rows": 173030,
+        "points": 12932,
+        "top1_accuracy": 0.8755026291370245,
+        "accuracy_rows": 0.9821880598740103,
+        "precision": 0.9154014844804319,
+        "recall": 0.8392360037117229,
+        "f1": 0.8756656446667742,
+        "f1_macro": 0.9330362636541372,
+        "log_loss": 0.0476512946632403,
+        "roc_auc": 0.9940639909323712,
+        "confusion_matrix": [
+          [
+            159095,
+            1003
+          ],
+          [
+            2079,
+            10853
+          ]
+        ],
+        "pred_pairs": 9118,
+        "pred_continuity_direct": 0.930905900416758,
+        "pred_continuity_reach3": 0.9769686334722527,
+        "fit_s": 16.9197194999997,
+        "predict_s": 1.5507100000004357,
+        "val_trips": 16
+      },
+      {
+        "rows": 173121,
+        "points": 14905,
+        "top1_accuracy": 0.9007715531700772,
+        "accuracy_rows": 0.9822667382928703,
+        "precision": 0.9095439130735691,
+        "recall": 0.8817175444481717,
+        "f1": 0.8954145942631327,
+        "f1_macro": 0.942863314399497,
+        "log_loss": 0.046702049287606885,
+        "roc_auc": 0.9949036139062591,
+        "confusion_matrix": [
+          [
+            156909,
+            1307
+          ],
+          [
+            1763,
+            13142
+          ]
+        ],
+        "pred_pairs": 9796,
+        "pred_continuity_direct": 0.9529399755002042,
+        "pred_continuity_reach3": 0.9793793385055125,
+        "fit_s": 12.644711299999472,
+        "predict_s": 1.3353620999996565,
+        "val_trips": 16
+      }
+    ]
+  },
+  "final_fit_s": 35.02815120000014,
+  "train_rows_final": 1824953,
+  "student_test": {
+    "rows": 209524,
+    "points": 19133,
+    "top1_accuracy": 0.8952072335754978,
+    "accuracy_rows": 0.9804222905251905,
+    "precision": 0.9156113476746115,
+    "recall": 0.8653635080750536,
+    "f1": 0.8897785898538263,
+    "f1_macro": 0.9395178226563858,
+    "log_loss": 0.048233738362527916,
+    "roc_auc": 0.9950832656458677,
+    "confusion_matrix": [
+      [
+        188865,
+        1526
+      ],
+      [
+        2576,
+        16557
+      ]
+    ],
+    "top1_accuracy_all_points": 0.8939457202505219,
+    "pred_pairs": 19120,
+    "pred_continuity_direct": 0.9579497907949791,
+    "pred_continuity_reach3": 0.9853033472803348,
+    "inference_s": 2.2368477999998504,
+    "inference_ms_per_1k_rows": 10.675854794676745,
+    "inference_s_per_trip": 0.22368477999998504
+  },
+  "model_file": "models\\phase4\\lightgbm.joblib",
+  "model_file_mb": 1.59,
+  "wall_s": 122.41308710000067,
+  "peak_rss_mb_so_far": 2685.4
+}

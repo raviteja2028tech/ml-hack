@@ -1,0 +1,263 @@
+{
+  "model": "mlp",
+  "family": "Neural network",
+  "config": {
+    "activation": "relu",
+    "alpha": 0.0001,
+    "batch_size": 1024,
+    "beta_1": 0.9,
+    "beta_2": 0.999,
+    "early_stopping": true,
+    "epsilon": 1e-08,
+    "hidden_layer_sizes": [
+      64,
+      32
+    ],
+    "learning_rate": "constant",
+    "learning_rate_init": 0.001,
+    "max_fun": 15000,
+    "max_iter": 30,
+    "momentum": 0.9,
+    "n_iter_no_change": 4,
+    "nesterovs_momentum": true,
+    "power_t": 0.5,
+    "random_state": 42,
+    "shuffle": true,
+    "solver": "adam",
+    "tol": 0.0001,
+    "validation_fraction": 0.1,
+    "verbose": false,
+    "warm_start": false
+  },
+  "preprocessing": "QuantileTransformer(normal) in-pipeline",
+  "cv": {
+    "scheme": "GroupKFold(5) by trip, trip-balanced cap=1000 pts/trip",
+    "summary": {
+      "top1_accuracy": {
+        "mean": 0.8823176064028795,
+        "std": 0.013938301841047109
+      },
+      "accuracy_rows": {
+        "mean": 0.9803300118642598,
+        "std": 0.0012224647307586872
+      },
+      "precision": {
+        "mean": 0.9019687680061779,
+        "std": 0.009878686004353893
+      },
+      "recall": {
+        "mean": 0.85669694998819,
+        "std": 0.017839491936033233
+      },
+      "f1": {
+        "mean": 0.8786722260508059,
+        "std": 0.012135580115394095
+      },
+      "f1_macro": {
+        "mean": 0.9339825266000858,
+        "std": 0.006292583668387728
+      },
+      "log_loss": {
+        "mean": 0.0544141635298729,
+        "std": 0.004810759355985484
+      },
+      "roc_auc": {
+        "mean": 0.9922216592440959,
+        "std": 0.0022010040052947944
+      },
+      "pred_continuity_direct": {
+        "mean": 0.9399650119613426,
+        "std": 0.009355451293288564
+      },
+      "pred_continuity_reach3": {
+        "mean": 0.9746584433093245,
+        "std": 0.0036941491969703067
+      },
+      "fit_s": {
+        "mean": 32.36070688000018,
+        "std": 4.430424426364172
+      },
+      "predict_s": {
+        "mean": 1.3881011400000716,
+        "std": 0.2165142409669419
+      }
+    },
+    "folds": [
+      {
+        "rows": 173374,
+        "points": 14052,
+        "top1_accuracy": 0.8634358098491318,
+        "accuracy_rows": 0.9787684427884227,
+        "precision": 0.8935265993777036,
+        "recall": 0.8378878451465983,
+        "f1": 0.8648132505784274,
+        "f1_macro": 0.9266464044572758,
+        "log_loss": 0.06152428314089775,
+        "roc_auc": 0.9884271484846299,
+        "confusion_matrix": [
+          [
+            157919,
+            1403
+          ],
+          [
+            2278,
+            11774
+          ]
+        ],
+        "pred_pairs": 7586,
+        "pred_continuity_direct": 0.9398892697073556,
+        "pred_continuity_reach3": 0.9767993672554706,
+        "fit_s": 31.8572537,
+        "predict_s": 1.5524647000002005,
+        "val_trips": 15
+      },
+      {
+        "rows": 173232,
+        "points": 15599,
+        "top1_accuracy": 0.8867235079171741,
+        "accuracy_rows": 0.9793571626489332,
+        "precision": 0.9134172340279211,
+        "recall": 0.8514648374895827,
+        "f1": 0.8813536828135369,
+        "f1_macro": 0.9350244090905357,
+        "log_loss": 0.058251164853572845,
+        "roc_auc": 0.9916116088509134,
+        "confusion_matrix": [
+          [
+            156374,
+            1259
+          ],
+          [
+            2317,
+            13282
+          ]
+        ],
+        "pred_pairs": 8107,
+        "pred_continuity_direct": 0.941285308992229,
+        "pred_continuity_reach3": 0.9699025533489577,
+        "fit_s": 40.961688700000195,
+        "predict_s": 1.5889965999995184,
+        "val_trips": 16
+      },
+      {
+        "rows": 175360,
+        "points": 15071,
+        "top1_accuracy": 0.9010019242253334,
+        "accuracy_rows": 0.9822764598540146,
+        "precision": 0.9144896403575635,
+        "recall": 0.875655231902329,
+        "f1": 0.8946512100874517,
+        "f1_macro": 0.9424877690569505,
+        "log_loss": 0.04833785071969032,
+        "roc_auc": 0.9946975010512402,
+        "confusion_matrix": [
+          [
+            159055,
+            1234
+          ],
+          [
+            1874,
+            13197
+          ]
+        ],
+        "pred_pairs": 9105,
+        "pred_continuity_direct": 0.9505766062602965,
+        "pred_continuity_reach3": 0.9793520043931906,
+        "fit_s": 30.832307000000583,
+        "predict_s": 1.5359750000006898,
+        "val_trips": 17
+      },
+      {
+        "rows": 173030,
+        "points": 12932,
+        "top1_accuracy": 0.8693164243736468,
+        "accuracy_rows": 0.9803733456626018,
+        "precision": 0.8921697647639414,
+        "recall": 0.8387720383544696,
+        "f1": 0.864647269828617,
+        "f1_macro": 0.9270334208756132,
+        "log_loss": 0.0528888925909996,
+        "roc_auc": 0.9923310779949631,
+        "confusion_matrix": [
+          [
+            158787,
+            1311
+          ],
+          [
+            2085,
+            10847
+          ]
+        ],
+        "pred_pairs": 9118,
+        "pred_continuity_direct": 0.9227900855450757,
+        "pred_continuity_reach3": 0.9707172625575784,
+        "fit_s": 29.065724000000046,
+        "predict_s": 1.0493813000002774,
+        "val_trips": 16
+      },
+      {
+        "rows": 173121,
+        "points": 14905,
+        "top1_accuracy": 0.8911103656491111,
+        "accuracy_rows": 0.9808746483673269,
+        "precision": 0.8962406015037594,
+        "recall": 0.8797047970479704,
+        "f1": 0.8878957169459962,
+        "f1_macro": 0.9387206295200543,
+        "log_loss": 0.05106862634420395,
+        "roc_auc": 0.9940409598387333,
+        "confusion_matrix": [
+          [
+            156698,
+            1518
+          ],
+          [
+            1793,
+            13112
+          ]
+        ],
+        "pred_pairs": 9796,
+        "pred_continuity_direct": 0.9452837893017558,
+        "pred_continuity_reach3": 0.9765210289914251,
+        "fit_s": 29.086561000000074,
+        "predict_s": 1.213688099999672,
+        "val_trips": 16
+      }
+    ]
+  },
+  "final_fit_s": 59.91068879999966,
+  "train_rows_final": 1824953,
+  "student_test": {
+    "rows": 209524,
+    "points": 19133,
+    "top1_accuracy": 0.8867401871112737,
+    "accuracy_rows": 0.9791670643935778,
+    "precision": 0.9109985528219972,
+    "recall": 0.8554330214812105,
+    "f1": 0.8823418420981698,
+    "f1_macro": 0.9354568073846952,
+    "log_loss": 0.05305568501353264,
+    "roc_auc": 0.9940276726347524,
+    "confusion_matrix": [
+      [
+        188792,
+        1599
+      ],
+      [
+        2766,
+        16367
+      ]
+    ],
+    "top1_accuracy_all_points": 0.885490605427975,
+    "pred_pairs": 19120,
+    "pred_continuity_direct": 0.9561192468619247,
+    "pred_continuity_reach3": 0.9844142259414226,
+    "inference_s": 1.3271281000006638,
+    "inference_ms_per_1k_rows": 6.334014719080697,
+    "inference_s_per_trip": 0.13271281000006638
+  },
+  "model_file": "models\\phase4\\mlp.joblib",
+  "model_file_mb": 0.19,
+  "wall_s": 232.20043650000025,
+  "peak_rss_mb_so_far": 2852.6
+}

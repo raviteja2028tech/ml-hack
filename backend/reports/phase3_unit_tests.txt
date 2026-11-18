@@ -1,0 +1,36 @@
+test_at_most_one_positive_per_point (tests.test_phase3.TestBuiltDataset.test_at_most_one_positive_per_point) ... ok
+test_loader_labelled_only_has_one_positive_per_point (tests.test_phase3.TestBuiltDataset.test_loader_labelled_only_has_one_positive_per_point) ... ok
+test_no_duplicate_rows_and_all_features_present (tests.test_phase3.TestBuiltDataset.test_no_duplicate_rows_and_all_features_present) ... ok
+test_no_nulls_in_features (tests.test_phase3.TestBuiltDataset.test_no_nulls_in_features) ... ok
+test_trip_counts_and_disjoint (tests.test_phase3.TestBuiltDataset.test_trip_counts_and_disjoint) ... ok
+test_config_validation (tests.test_phase3.TestCandidateGenerator.test_config_validation) ... ok
+test_long_arc_with_far_midpoint_is_found (tests.test_phase3.TestCandidateGenerator.test_long_arc_with_far_midpoint_is_found) ... ok
+test_matches_brute_force_on_random_network (tests.test_phase3.TestCandidateGenerator.test_matches_brute_force_on_random_network) ... ok
+test_no_candidates_and_empty (tests.test_phase3.TestCandidateGenerator.test_no_candidates_and_empty) ... ok
+test_real_trip_matches_brute_force_and_keeps_local_arc_ids (tests.test_phase3.TestCandidateGenerator.test_real_trip_matches_brute_force_and_keeps_local_arc_ids) ... ok
+test_sorted_by_point_then_distance_and_cap (tests.test_phase3.TestCandidateGenerator.test_sorted_by_point_then_distance_and_cap) ... ok
+test_directional_and_connectivity_features (tests.test_phase3.TestFeatures.test_directional_and_connectivity_features) ... ok
+test_feature_list_is_label_free (tests.test_phase3.TestFeatures.test_feature_list_is_label_free) ... ok
+test_feature_module_never_touches_route (tests.test_phase3.TestFeatures.test_feature_module_never_touches_route) ... ok
+test_features_identical_with_and_without_route (tests.test_phase3.TestFeatures.test_features_identical_with_and_without_route)
+Leakage check: removing the route must not change a single feature value. ... ok
+test_heading_carried_forward_when_stopped (tests.test_phase3.TestFeatures.test_heading_carried_forward_when_stopped) ... ok
+test_kinematics_straight_line_and_gap_split (tests.test_phase3.TestFeatures.test_kinematics_straight_line_and_gap_split) ... ok
+test_angle_diff_wraps (tests.test_phase3.TestGeometry.test_angle_diff_wraps) ... ok
+test_bearing_convention (tests.test_phase3.TestGeometry.test_bearing_convention) ... ok
+test_degenerate_segment (tests.test_phase3.TestGeometry.test_degenerate_segment) ... ok
+test_known_distances (tests.test_phase3.TestGeometry.test_known_distances) ... ok
+test_projection_error_vs_haversine_small (tests.test_phase3.TestGeometry.test_projection_error_vs_haversine_small)
+Local equirectangular metres vs haversine for GPS-to-node pairs within 100 m. ... ok
+test_vectorised_distance_matches_scalar_reference (tests.test_phase3.TestGeometry.test_vectorised_distance_matches_scalar_reference) ... ok
+test_many_points_per_arc_and_skipped_short_arcs (tests.test_phase3.TestLabeling.test_many_points_per_arc_and_skipped_short_arcs) ... ok
+test_multi_edge_twin_marked_equivalent (tests.test_phase3.TestLabeling.test_multi_edge_twin_marked_equivalent) ... ok
+test_off_route_tail_is_flagged_not_labelled (tests.test_phase3.TestLabeling.test_off_route_tail_is_flagged_not_labelled) ... ok
+test_revisited_arc_gets_two_positions (tests.test_phase3.TestLabeling.test_revisited_arc_gets_two_positions) ... ok
+test_u_turn_on_two_way_road_uses_direction (tests.test_phase3.TestLabeling.test_u_turn_on_two_way_road_uses_direction) ... ok
+test_train_and_student_test_disjoint (tests.test_phase3.TestPartitions.test_train_and_student_test_disjoint) ... ok
+
+----------------------------------------------------------------------
+Ran 29 tests in 6.541s
+
+OK

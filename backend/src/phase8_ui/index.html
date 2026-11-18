@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PathSnap Map Matching</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6' fill='%23059669'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="vendor/leaflet.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">◎</div>
+      <div>
+        <h1>PathSnap</h1>
+        <p class="subtitle">GPS map matching · candidate roads → LightGBM emissions → HMM + Viterbi route reconstruction</p>
+      </div>
+    </div>
+    <div class="conn">
+      <label for="apiUrl" class="sr-only">Backend URL</label>
+      <input id="apiUrl" type="url" spellcheck="false" placeholder="http://192.168.x.x:8000">
+      <button id="connectBtn" class="btn ghost" type="button">Connect</button>
+      <span id="status" class="pill pill-wait">Checking backend…</span>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="panel">
+      <section class="card">
+        <h2>1 · Select a student-test trip</h2>
+        <select id="tripSelect" disabled><option>Loading trips…</option></select>
+        <div class="row">
+          <button id="runBtn" class="btn primary" type="button" disabled>Run Map Matching</button>
+          <button id="resetBtn" class="btn ghost" type="button">Reset</button>
+        </div>
+        <div id="loading" class="loading" hidden><span class="spinner"></span> Running candidates → features → LightGBM → Viterbi…</div>
+        <div id="error" class="error" role="alert" hidden></div>
+      </section>
+
+      <section class="card" id="resultCard" hidden>
+        <h2>2 · Result for trip <span id="resTrip"></span></h2>
+        <div class="kpis">
+          <div class="kpi"><span class="kpi-label">ML-only Top-1</span><span class="kpi-val" id="kMl">–</span></div>
+          <div class="kpi accent"><span class="kpi-label">HMM Top-1</span><span class="kpi-val" id="kHmm">–</span></div>
+          <div class="kpi"><span class="kpi-label">Inference</span><span class="kpi-val" id="kTime">–</span></div>
+        </div>
+        <table class="mtable" aria-label="ML-only vs HMM metrics">
+          <thead><tr><th>Metric</th><th>ML-only</th><th>HMM</th></tr></thead>
+          <tbody id="metricRows"></tbody>
+        </table>
+        <p class="note">Accuracy is measured against the <strong>ground-truth reference route</strong>, which is loaded only for evaluation and display. It is never a prediction input.</p>
+        <details>
+          <summary>Pipeline details</summary>
+          <dl id="details" class="details"></dl>
+        </details>
+      </section>
+
+      <section class="card">
+        <h2>Model comparison (Phase 4, saved results)</h2>
+        <div id="modelTable" class="muted">Loading…</div>
+        <div id="hmmOverall" class="muted"></div>
+      </section>
+    </aside>
+
+    <section class="mapwrap">
+      <div id="map" aria-label="Map of GPS points and routes"></div>
+      <div class="legend" aria-hidden="true">
+        <span><i class="sw sw-gps"></i>GPS observations</span>
+        <span><i class="sw sw-ml"></i>ML-only prediction</span>
+        <span><i class="sw sw-hmm"></i>HMM / Viterbi prediction</span>
+        <span><i class="sw sw-ref"></i>Ground truth (reference)</span>
+        <span><i class="sw sw-chg"></i>Points changed by HMM</span>
+      </div>
+      <div id="mapEmpty" class="map-empty">Select a trip and press <strong>Run Map Matching</strong></div>
+    </section>
+  </main>
+
+  <script src="vendor/leaflet.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

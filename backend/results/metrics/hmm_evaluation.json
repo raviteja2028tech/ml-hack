@@ -1,0 +1,612 @@
+{
+  "partition": "student_test",
+  "model_file": "artifacts/models/lightgbm.joblib",
+  "hmm_config": {
+    "transition": {
+      "beta_m": 10.0,
+      "max_speed_mps": 45.0,
+      "speed_penalty_per_mps": 0.5,
+      "backward_tol_m": 5.0,
+      "backward_penalty_per_m": 0.2,
+      "uturn_penalty": 3.0,
+      "disconnected_logp": -50.0,
+      "search_factor": 3.0,
+      "search_slack_m": 250.0,
+      "max_search_m": 4000.0
+    },
+    "emission_eps": 1e-06,
+    "emission_weight": 1.0,
+    "max_gap_s": 30.0
+  },
+  "trips": 10,
+  "overall": {
+    "ml_only": {
+      "points": 19133,
+      "top1_accuracy": 0.8952072335754978,
+      "top1_accuracy_equiv": 0.8952072335754978,
+      "continuity_direct": 0.9580112805514936,
+      "continuity_reach3": 0.9853248381031962,
+      "arc_switches": 4191,
+      "mean_route_precision": 0.9100896862982909,
+      "mean_route_recall": 0.8967520848035964,
+      "mean_route_f1": 0.901343048462478,
+      "mean_route_length_f1": 0.9475710284414409
+    },
+    "hmm": {
+      "points": 19133,
+      "top1_accuracy": 0.9414623948152406,
+      "top1_accuracy_equiv": 0.9414623948152406,
+      "continuity_direct": 0.9831313975349906,
+      "continuity_reach3": 0.999216628368498,
+      "arc_switches": 3229,
+      "mean_route_precision": 0.9756110582751957,
+      "mean_route_recall": 0.9076761539264601,
+      "mean_route_f1": 0.9390919642223376,
+      "mean_route_length_f1": 0.9844004315532269
+    }
+  },
+  "per_trip": [
+    {
+      "trip_id": "00000000",
+      "n_points": 2503,
+      "n_candidate_rows": 13692,
+      "metrics": {
+        "ml_only": {
+          "points": 2503,
+          "correct": 2383,
+          "top1_accuracy": 0.9520575309628446,
+          "top1_accuracy_equiv": 0.9520575309628446,
+          "pairs": 2502,
+          "continuity_direct": 0.9840127897681854,
+          "continuity_reach3": 0.9932054356514788,
+          "arc_switches": 228,
+          "route_precision": 0.8781725888324873,
+          "route_recall": 0.9664804469273743,
+          "route_f1": 0.9202127659574467,
+          "route_length_precision": 0.9450280293877498,
+          "route_length_recall": 0.9988459936823108,
+          "route_length_f1": 0.9711920112813007
+        },
+        "hmm": {
+          "points": 2503,
+          "correct": 2404,
+          "top1_accuracy": 0.9604474630443468,
+          "top1_accuracy_equiv": 0.9604474630443468,
+          "pairs": 2502,
+          "continuity_direct": 0.9960031974420464,
+          "continuity_reach3": 1.0,
+          "arc_switches": 181,
+          "route_precision": 0.9555555555555556,
+          "route_recall": 0.9608938547486033,
+          "route_f1": 0.958217270194986,
+          "route_length_precision": 0.9965311168452122,
+          "route_length_recall": 0.9976224101719146,
+          "route_length_f1": 0.9970764649053946
+        },
+        "reference_route_arcs": 179,
+        "labelled_points": 2503
+      },
+      "timing_ms": {
+        "load": 343.1,
+        "candidates": 57.5,
+        "features": 52.1,
+        "model": 148.5,
+        "hmm": 342.4,
+        "inference_total": 965.2,
+        "evaluation_labels": 51.6
+      },
+      "hmm_diagnostics": {
+        "chains": 1,
+        "no_candidate_points": 0,
+        "disconnected_steps": 0,
+        "dijkstra_runs": 509
+      }
+    },
+    {
+      "trip_id": "00000007",
+      "n_points": 1354,
+      "n_candidate_rows": 5010,
+      "metrics": {
+        "ml_only": {
+          "points": 1354,
+          "correct": 1322,
+          "top1_accuracy": 0.9763663220088626,
+          "top1_accuracy_equiv": 0.9763663220088626,
+          "pairs": 1353,
+          "continuity_direct": 0.9985218033998522,
+          "continuity_reach3": 1.0,
+          "arc_switches": 149,
+          "route_precision": 0.983739837398374,
+          "route_recall": 0.983739837398374,
+          "route_f1": 0.983739837398374,
+          "route_length_precision": 0.9853248824661806,
+          "route_length_recall": 0.9930249569298567,
+          "route_length_f1": 0.9891599346974981
+        },
+        "hmm": {
+          "points": 1354,
+          "correct": 1349,
+          "top1_accuracy": 0.9963072378138847,
+          "top1_accuracy_equiv": 0.9963072378138847,
+          "pairs": 1353,
+          "continuity_direct": 1.0,
+          "continuity_reach3": 1.0,
+          "arc_switches": 120,
+          "route_precision": 1.0,
+          "route_recall": 0.983739837398374,
+          "route_f1": 0.9918032786885246,
+          "route_length_precision": 1.0,
+          "route_length_recall": 0.9930249569298567,
+          "route_length_f1": 0.9965002730919696
+        },
+        "reference_route_arcs": 123,
+        "labelled_points": 1354
+      },
+      "timing_ms": {
+        "load": 125.5,
+        "candidates": 16.2,
+        "features": 32.7,
+        "model": 60.5,
+        "hmm": 143.7,
+        "inference_total": 396.5,
+        "evaluation_labels": 29.1
+      },
+      "hmm_diagnostics": {
+        "chains": 1,
+        "no_candidate_points": 0,
+        "disconnected_steps": 0,
+        "dijkstra_runs": 204
+      }
+    },
+    {
+      "trip_id": "00000009",
+      "n_points": 1049,
+      "n_candidate_rows": 20779,
+      "metrics": {
+        "ml_only": {
+          "points": 1049,
+          "correct": 920,
+          "top1_accuracy": 0.877025738798856,
+          "top1_accuracy_equiv": 0.877025738798856,
+          "pairs": 1048,
+          "continuity_direct": 0.9303435114503816,
+          "continuity_reach3": 0.982824427480916,
+          "arc_switches": 395,
+          "route_precision": 0.9130434782608695,
+          "route_recall": 0.8321678321678322,
+          "route_f1": 0.8707317073170732,
+          "route_length_precision": 0.8942850043364454,
+          "route_length_recall": 0.9255131658996277,
+          "route_length_f1": 0.9096311438456014
+        },
+        "hmm": {
+          "points": 1049,
+          "correct": 955,
+          "top1_accuracy": 0.9103908484270734,
+          "top1_accuracy_equiv": 0.9103908484270734,
+          "pairs": 1048,
+          "continuity_direct": 0.9541984732824428,
+          "continuity_reach3": 0.9971374045801527,
+          "arc_switches": 381,
+          "route_precision": 0.9633507853403142,
+          "route_recall": 0.8578088578088578,
+          "route_f1": 0.9075215782983971,
+          "route_length_precision": 0.9622076993924905,
+          "route_length_recall": 0.9572037652024636,
+          "route_length_f1": 0.959699209632108
+        },
+        "reference_route_arcs": 429,
+        "labelled_points": 1049
+      },
+      "timing_ms": {
+        "load": 182.6,
+        "candidates": 28.5,
+        "features": 99.6,
+        "model": 258.2,
+        "hmm": 1172.0,
+        "inference_total": 1782.6,
+        "evaluation_labels": 66.4
+      },
+      "hmm_diagnostics": {
+        "chains": 1,
+        "no_candidate_points": 0,
+        "disconnected_steps": 1,
+        "dijkstra_runs": 1070
+      }
+    },
+    {
+      "trip_id": "00000040",
+      "n_points": 2995,
+      "n_candidate_rows": 16308,
+      "metrics": {
+        "ml_only": {
+          "points": 2995,
+          "correct": 2828,
+          "top1_accuracy": 0.9442404006677796,
+          "top1_accuracy_equiv": 0.9442404006677796,
+          "pairs": 2994,
+          "continuity_direct": 0.9789579158316634,
+          "continuity_reach3": 0.996993987975952,
+          "arc_switches": 404,
+          "route_precision": 0.9337539432176656,
+          "route_recall": 0.9579288025889967,
+          "route_f1": 0.9456869009584664,
+          "route_length_precision": 0.9742160225963451,
+          "route_length_recall": 0.9959001826780259,
+          "route_length_f1": 0.9849387688645915
+        },
+        "hmm": {
+          "points": 2995,
+          "correct": 2911,
+          "top1_accuracy": 0.9719532554257095,
+          "top1_accuracy_equiv": 0.9719532554257095,
+          "pairs": 2994,
+          "continuity_direct": 0.9943219772879092,
+          "continuity_reach3": 1.0,
+          "arc_switches": 315,
+          "route_precision": 0.99,
+          "route_recall": 0.9611650485436893,
+          "route_f1": 0.9753694581280788,
+          "route_length_precision": 0.997910933420255,
+          "route_length_recall": 0.9970768926936912,
+          "route_length_f1": 0.9974937387140712
+        },
+        "reference_route_arcs": 309,
+        "labelled_points": 2995
+      },
+      "timing_ms": {
+        "load": 421.4,
+        "candidates": 60.8,
+        "features": 84.6,
+        "model": 177.1,
+        "hmm": 395.4,
+        "inference_total": 1166.8,
+        "evaluation_labels": 123.7
+      },
+      "hmm_diagnostics": {
+        "chains": 1,
+        "no_candidate_points": 0,
+        "disconnected_steps": 0,
+        "dijkstra_runs": 791
+      }
+    },
+    {
+      "trip_id": "00000052",
+      "n_points": 262,
+      "n_candidate_rows": 2454,
+      "metrics": {
+        "ml_only": {
+          "points": 262,
+          "correct": 252,
+          "top1_accuracy": 0.9618320610687023,
+          "top1_accuracy_equiv": 0.9618320610687023,
+          "pairs": 261,
+          "continuity_direct": 0.946360153256705,
+          "continuity_reach3": 0.9808429118773946,
+          "arc_switches": 84,
+          "route_precision": 0.9176470588235294,
+          "route_recall": 0.8210526315789474,
+          "route_f1": 0.8666666666666667,
+          "route_length_precision": 0.9363015894045276,
+          "route_length_recall": 0.9685627830791801,
+          "route_length_f1": 0.9521589949762844
+        },
+        "hmm": {
+          "points": 262,
+          "correct": 259,
+          "top1_accuracy": 0.9885496183206107,
+          "top1_accuracy_equiv": 0.9885496183206107,
+          "pairs": 261,
+          "continuity_direct": 0.9655172413793104,
+          "continuity_reach3": 1.0,
+          "arc_switches": 82,
+          "route_precision": 1.0,
+          "route_recall": 0.8736842105263158,
+          "route_f1": 0.9325842696629214,
+          "route_length_precision": 1.0,
+          "route_length_recall": 0.9811844718142956,
+          "route_length_f1": 0.9905028893304045
+        },
+        "reference_route_arcs": 95,
+        "labelled_points": 262
+      },
+      "timing_ms": {
+        "load": 38.5,
+        "candidates": 8.5,
+        "features": 19.1,
+        "model": 27.6,
+        "hmm": 60.1,
+        "inference_total": 169.9,
+        "evaluation_labels": 7.2
+      },
+      "hmm_diagnostics": {
+        "chains": 1,
+        "no_candidate_points": 0,
+        "disconnected_steps": 0,
+        "dijkstra_runs": 323
+      }
+    },
+    {
+      "trip_id": "00000056",
+      "n_points": 3958,
+      "n_candidate_rows": 49057,
+      "metrics": {
+        "ml_only": {
+          "points": 3931,
+          "correct": 3584,
+          "top1_accuracy": 0.9117272958534725,
+          "top1_accuracy_equiv": 0.9117272958534725,
+          "pairs": 3957,
+          "continuity_direct": 0.9279757391963609,
+          "continuity_reach3": 0.9605761940864291,
+          "arc_switches": 1328,
+          "route_precision": 0.9461077844311377,
+          "route_recall": 0.8876404494382022,
+          "route_f1": 0.9159420289855073,
+          "route_length_precision": 0.8906684718645111,
+          "route_length_recall": 0.9667453827866651,
+          "route_length_f1": 0.927148928724209
+        },
+        "hmm": {
+          "points": 3931,
+          "correct": 3798,
+          "top1_accuracy": 0.9661663698804376,
+          "top1_accuracy_equiv": 0.9661663698804376,
+          "pairs": 3957,
+          "continuity_direct": 0.9663886782916351,
+          "continuity_reach3": 0.9987364164771292,
+          "arc_switches": 1177,
+          "route_precision": 0.9885773624091381,
+          "route_recall": 0.8913857677902621,
+          "route_f1": 0.9374692269817824,
+          "route_length_precision": 0.9733434278436848,
+          "route_length_recall": 0.9724124015863768,
+          "route_length_f1": 0.9728776919712828
+        },
+        "reference_route_arcs": 1323,
+        "labelled_points": 3931
+      },
+      "timing_ms": {
+        "load": 477.9,
+        "candidates": 84.0,
+        "features": 200.0,
+        "model": 519.8,
+        "hmm": 1450.1,
+        "inference_total": 2784.0,
+        "evaluation_labels": 726.7
+      },
+      "hmm_diagnostics": {
+        "chains": 1,
+        "no_candidate_points": 0,
+        "disconnected_steps": 2,
+        "dijkstra_runs": 1810
+      }
+    },
+    {
+      "trip_id": "00000065",
+      "n_points": 768,
+      "n_candidate_rows": 10834,
+      "metrics": {
+        "ml_only": {
+          "points": 768,
+          "correct": 697,
+          "top1_accuracy": 0.9075520833333334,
+          "top1_accuracy_equiv": 0.9075520833333334,
+          "pairs": 766,
+          "continuity_direct": 0.9608355091383812,
+          "continuity_reach3": 0.9856396866840731,
+          "arc_switches": 160,
+          "route_precision": 0.9090909090909091,
+          "route_recall": 0.896551724137931,
+          "route_f1": 0.9027777777777778,
+          "route_length_precision": 0.9389950664469451,
+          "route_length_recall": 0.9814043143450322,
+          "route_length_f1": 0.9597314168885946
+        },
+        "hmm": {
+          "points": 768,
+          "correct": 717,
+          "top1_accuracy": 0.93359375,
+          "top1_accuracy_equiv": 0.93359375,
+          "pairs": 766,
+          "continuity_direct": 0.9856396866840731,
+          "continuity_reach3": 1.0,
+          "arc_switches": 139,
+          "route_precision": 0.9712230215827338,
+          "route_recall": 0.9310344827586207,
+          "route_f1": 0.9507042253521125,
+          "route_length_precision": 0.9727660796451814,
+          "route_length_recall": 0.9895865529758432,
+          "route_length_f1": 0.9811042272480359
+        },
+        "reference_route_arcs": 145,
+        "labelled_points": 768
+      },
+      "timing_ms": {
+        "load": 264.4,
+        "candidates": 34.2,
+        "features": 66.3,
+        "model": 123.6,
+        "hmm": 352.5,
+        "inference_total": 867.9,
+        "evaluation_labels": 23.5
+      },
+      "hmm_diagnostics": {
+        "chains": 2,
+        "no_candidate_points": 0,
+        "disconnected_steps": 0,
+        "dijkstra_runs": 617
+      }
+    },
+    {
+      "trip_id": "00000076",
+      "n_points": 1486,
+      "n_candidate_rows": 29316,
+      "metrics": {
+        "ml_only": {
+          "points": 1486,
+          "correct": 1374,
+          "top1_accuracy": 0.9246298788694481,
+          "top1_accuracy_equiv": 0.9246298788694481,
+          "pairs": 1484,
+          "continuity_direct": 0.9400269541778976,
+          "continuity_reach3": 0.9797843665768194,
+          "arc_switches": 382,
+          "route_precision": 0.8915989159891599,
+          "route_recall": 0.8796791443850267,
+          "route_f1": 0.8855989232839838,
+          "route_length_precision": 0.9171575433038011,
+          "route_length_recall": 0.9768577549947144,
+          "route_length_f1": 0.946066760424879
+        },
+        "hmm": {
+          "points": 1486,
+          "correct": 1436,
+          "top1_accuracy": 0.9663526244952894,
+          "top1_accuracy_equiv": 0.9663526244952894,
+          "pairs": 1484,
+          "continuity_direct": 0.9757412398921833,
+          "continuity_reach3": 0.9979784366576819,
+          "arc_switches": 338,
+          "route_precision": 0.9764705882352941,
+          "route_recall": 0.8877005347593583,
+          "route_f1": 0.9299719887955181,
+          "route_length_precision": 0.9891244209692956,
+          "route_length_recall": 0.9798029772492305,
+          "route_length_f1": 0.9844416339703694
+        },
+        "reference_route_arcs": 374,
+        "labelled_points": 1486
+      },
+      "timing_ms": {
+        "load": 592.2,
+        "candidates": 102.7,
+        "features": 165.0,
+        "model": 314.5,
+        "hmm": 1580.9,
+        "inference_total": 2800.6,
+        "evaluation_labels": 90.5
+      },
+      "hmm_diagnostics": {
+        "chains": 2,
+        "no_candidate_points": 0,
+        "disconnected_steps": 0,
+        "dijkstra_runs": 1495
+      }
+    },
+    {
+      "trip_id": "00000077",
+      "n_points": 3911,
+      "n_candidate_rows": 48189,
+      "metrics": {
+        "ml_only": {
+          "points": 3911,
+          "correct": 2980,
+          "top1_accuracy": 0.7619534645870621,
+          "top1_accuracy_equiv": 0.7619534645870621,
+          "pairs": 3910,
+          "continuity_direct": 0.9611253196930947,
+          "continuity_reach3": 0.9961636828644501,
+          "arc_switches": 840,
+          "route_precision": 0.809375,
+          "route_recall": 0.9664179104477612,
+          "route_f1": 0.8809523809523809,
+          "route_length_precision": 0.7900514701792429,
+          "route_length_recall": 0.996322428328348,
+          "route_length_f1": 0.8812779899336621
+        },
+        "hmm": {
+          "points": 3911,
+          "correct": 3370,
+          "top1_accuracy": 0.8616722065967783,
+          "top1_accuracy_equiv": 0.8616722065967783,
+          "pairs": 3910,
+          "continuity_direct": 0.992071611253197,
+          "continuity_reach3": 1.0,
+          "arc_switches": 315,
+          "route_precision": 0.9384057971014492,
+          "route_recall": 0.9664179104477612,
+          "route_f1": 0.9522058823529411,
+          "route_length_precision": 0.9835139992482154,
+          "route_length_recall": 0.996318998007975,
+          "route_length_f1": 0.9898750890765157
+        },
+        "reference_route_arcs": 268,
+        "labelled_points": 3911
+      },
+      "timing_ms": {
+        "load": 390.1,
+        "candidates": 86.0,
+        "features": 265.9,
+        "model": 539.4,
+        "hmm": 1082.3,
+        "inference_total": 2425.8,
+        "evaluation_labels": 172.2
+      },
+      "hmm_diagnostics": {
+        "chains": 1,
+        "no_candidate_points": 0,
+        "disconnected_steps": 0,
+        "dijkstra_runs": 688
+      }
+    },
+    {
+      "trip_id": "00000091",
+      "n_points": 874,
+      "n_candidate_rows": 13945,
+      "metrics": {
+        "ml_only": {
+          "points": 874,
+          "correct": 788,
+          "top1_accuracy": 0.9016018306636155,
+          "top1_accuracy_equiv": 0.9016018306636155,
+          "pairs": 873,
+          "continuity_direct": 0.9358533791523482,
+          "continuity_reach3": 0.97709049255441,
+          "arc_switches": 221,
+          "route_precision": 0.9183673469387755,
+          "route_recall": 0.7758620689655172,
+          "route_f1": 0.8411214953271028,
+          "route_length_precision": 0.9321192558689384,
+          "route_length_recall": 0.9777810955657075,
+          "route_length_f1": 0.9544043347777873
+        },
+        "hmm": {
+          "points": 874,
+          "correct": 814,
+          "top1_accuracy": 0.931350114416476,
+          "top1_accuracy_equiv": 0.931350114416476,
+          "pairs": 873,
+          "continuity_direct": 0.9679266895761741,
+          "continuity_reach3": 0.995418098510882,
+          "arc_switches": 181,
+          "route_precision": 0.9725274725274725,
+          "route_recall": 0.7629310344827587,
+          "route_f1": 0.8550724637681161,
+          "route_length_precision": 0.9822400322229985,
+          "route_length_recall": 0.9667492848541788,
+          "route_length_f1": 0.974433097592117
+        },
+        "reference_route_arcs": 232,
+        "labelled_points": 874
+      },
+      "timing_ms": {
+        "load": 281.3,
+        "candidates": 20.7,
+        "features": 77.3,
+        "model": 139.3,
+        "hmm": 561.0,
+        "inference_total": 1100.5,
+        "evaluation_labels": 22.2
+      },
+      "hmm_diagnostics": {
+        "chains": 1,
+        "no_candidate_points": 0,
+        "disconnected_steps": 0,
+        "dijkstra_runs": 730
+      }
+    }
+  ],
+  "wall_s": 16.279964800000016,
+  "note": "Ground truth is used only after inference, for these metrics. HMM settings are fixed a priori (not tuned on these trips)."
+}

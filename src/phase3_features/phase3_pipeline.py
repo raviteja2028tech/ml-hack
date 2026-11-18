@@ -21,7 +21,7 @@ from src.candidate_generator import ArcGeometry, CandidateConfig, generate_candi
 from src.feature_engineering import FEATURE_COLUMNS, FeatureConfig, build_arc_graph, compute_point_kinematics, build_candidate_features
 from src.pathsnap_loader import load_trip
 
-DEFAULT_BASE_DIR = Path(__file__).resolve().parents[1] / "data" / "raw" / "Student folder"
+DEFAULT_BASE_DIR = Path(__file__).resolve().parents[2] / "data" / "raw" / "Student folder"
 
 
 @dataclass(frozen=True)

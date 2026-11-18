@@ -248,7 +248,9 @@ class TestFeatures(unittest.TestCase):
         self.assertEqual(set(FEATURE_DTYPES), set(FEATURE_COLUMNS))
 
     def test_feature_module_never_touches_route(self):
-        src = (ROOT / "src" / "feature_engineering.py").read_text(encoding="utf-8")
+        import src.feature_engineering as live_fe  # the module actually imported (phase-wise location)
+        self.assertIn("phase3_features", live_fe.__file__)
+        src = Path(live_fe.__file__).read_text(encoding="utf-8")
         tree = ast.parse(src)
         for node in ast.walk(tree):
             if isinstance(node, (ast.Import, ast.ImportFrom)):

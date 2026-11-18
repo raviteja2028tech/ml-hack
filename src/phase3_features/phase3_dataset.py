@@ -20,7 +20,7 @@ from typing import List, Optional, Sequence
 import pandas as pd
 import pyarrow.dataset as ds
 
-PROCESSED = Path(__file__).resolve().parents[1] / "data" / "processed" / "phase3"
+PROCESSED = Path(__file__).resolve().parents[2] / "data" / "processed" / "phase3"
 PARTITIONS = ("train", "student_test")
 
 

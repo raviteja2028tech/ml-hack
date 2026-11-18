@@ -14,25 +14,34 @@ Matches noisy GPS tracks to the trip's road network. Each GPS point gets candida
 
 ## Layout
 ```
-src/
-  pathsnap_loader.py       read .track/.nodes/.arcs/.route, local metric projection
-  candidate_generator.py   exact radius search for candidate arcs (densified cKDTree)
-  feature_engineering.py   42 per-candidate features (distance, heading, speed, topology, temporal)
-  route_labeler.py         monotone DP alignment of GPS to .route -> candidate labels
-  phase3_pipeline.py       per-trip candidates + features + labels
-  phase3_dataset.py        load the processed Parquet dataset
-  train_models.py          GroupKFold-by-trip training/evaluation of 5 models
-  visualize_folium.py      multi-layer trip maps
-scripts/
-  run_audit.py             dataset audit -> outputs/reports/dataset_exploration_report.json
-  generate_eda_maps.py     Folium maps -> outputs/figures/eda_maps/
-  generate_review1_map.py  outputs/figures/REVIEW1_MAP.html
-  build_phase3_dataset.py  builds data/processed/phase3/ (about 2 min, 3 workers)
-  benchmark_phase3.py      runtime/memory benchmark
-tests/                     unittest suites for phases 3 and 4
-models/phase4/             trained models (joblib bundles: model + feature list)
-outputs/reports/           audit, Phase 3 and Phase 4 results (JSON + logs)
-docs/                      requirements, plan, progress, reports, official guidelines
+PathSnap/
+├── README.md
+├── requirements.txt
+├── .gitignore
+├── data/
+│   ├── raw/
+│   │   └── Student folder/          # 80 train + 10 student_test trips
+│   └── processed/
+│       ├── train_candidates.parquet
+│       └── student_test_candidates.parquet
+├── src/
+│   ├── phase1_eda/                  # Data loading, projections, Folium visualizations
+│   ├── phase2_preprocessing/        # Spatial indexing & coordinate conversions
+│   ├── phase3_features/             # Candidate generation, 42 features, route labeling
+│   ├── phase4_models/               # 5-model training, evaluation & metrics
+│   ├── phase5_hmm/                  # HMM & Viterbi sequential decoder
+│   └── phase6_pipeline/             # Unified end-to-end inference pipeline
+├── api/                             # FastAPI service (Laptop 1 server)
+├── ui/                              # Evaluator interface (Laptop 2 client)
+├── artifacts/
+│   └── models/                      # Trained .joblib models (LR, RF, ET, LGBM, MLP)
+├── results/
+│   ├── figures/                     # Confusion matrices & evaluation plots
+│   ├── metrics/                     # Model comparison JSONs & benchmarks
+│   └── maps/                        # Interactive Folium maps (REVIEW1_MAP.html)
+├── tests/                           # Unit tests (45 tests covering all phases)
+├── docs/                            # Official guidelines & hackathon requirements
+└── reports/                         # Technical reports, EDA summaries & build logs
 ```
 
 ## Setup
@@ -42,12 +51,15 @@ python -m venv .venv
 ```
 Extract the official `Student folder.zip` into `data/raw/`, so that `data/raw/Student folder/train/` and `data/raw/Student folder/student_test/` exist. Raw and processed data are not tracked in Git.
 
+## Testing
+```powershell
+.\.venv\Scripts\python.exe -m unittest tests.test_structure tests.test_phase3 tests.test_phase4
+```
+
 ## Run
 ```powershell
 .\.venv\Scripts\python.exe scripts\run_audit.py
 .\.venv\Scripts\python.exe scripts\generate_eda_maps.py
-.\.venv\Scripts\python.exe scripts\build_phase3_dataset.py          # regenerates data/processed/phase3
-.\.venv\Scripts\python.exe -m src.train_models --smoke              # quick check
-.\.venv\Scripts\python.exe -m src.train_models                      # all 5 models (about 14 min)
-.\.venv\Scripts\python.exe -m unittest tests.test_phase3 tests.test_phase4
+.\.venv\Scripts\python.exe scripts\build_phase3_dataset.py       # regenerates data/processed/phase3
+.\.venv\Scripts\python.exe -m src.phase4_models.train_models     # all 5 models (about 14 min)
 ```
